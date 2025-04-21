@@ -3,6 +3,56 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 8px 16px;
+  border-radius: 16px;
+}
+
+#input-form {
+  grid-column: span 1;
+  min-height: 480px;
+  background-color: #fff;
+  text-align: left;
+}
+
+#input-form h1 {
+  font-size: 24px;
+
+}
+
+#preview-form {
+  grid-column: span 3;
+  background-color: #fff;
+  text-align: left;
+}
+
+#preview-form h1 {
+  font-size: 36px;
+}
+
+#input-form h2, #preview-form h2 {
+  font-size: 20px;
+}
+
+#input-form h3, #preview-form h3 {
+  font-size: 18px;
+}
+
+#input-form p, #preview-form p {
+  font-size: 16px;
+}
+
+.accordion {
+  background-color: #fafafa;
+}
+
+.expandable-session {
+  border: 1px solid #ccc;
 }
 
 .logo {
