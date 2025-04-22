@@ -2,56 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
-const personalInfo = {
-  // name: 'John Doe',
-  firstName: 'John',
-  lastName: 'Doe',
-  emailAddress: 'johndoe@example.com',
-  contactPhone: '+123 456 7890'
-}
-
-const jobInfo = [
-  {
-    id: 'job1',
-    employer: 'TechCorp',
-    duration: '2 years',
-    description: 'Software Engineer responsible for developing web applications.',
-  },
-  {
-    id: 'job2',
-    employer: 'Innovate Inc.',
-    duration: '1 year',
-    description: 'Junior Developer working on mobile app development.',
-  },
-  // {
-  //   id: 'job3',
-  //   employer: 'Startup Hub',
-  //   duration: '6 months',
-  //   description: 'Intern assisting in backend API development.',
-  // },
-]
-
-const educationInfo = [
-  {
-    id: 'edu1',
-    institution: 'University of Technology',
-    duration: '4 years',
-    details: 'Bachelor of Science in Computer Science.',
-  },
-  {
-    id: 'edu2',
-    institution: 'High School of Excellence',
-    duration: '3 years',
-    details: 'High School Diploma with a focus on STEM subjects.',
-  },
-  {
-    id: 'edu3',
-    institution: 'Online Learning Platform',
-    duration: '6 months',
-    details: 'Completed a certification in Full-Stack Web Development.',
-  }
-]
+import { personalInfo, jobInfo, educationInfo } from './example-data'
+import Accordion from './components/accordion'
 
 const profile = {personalInfo, jobInfo, educationInfo}
 
@@ -71,7 +23,9 @@ function InputForm({profile, onChange, onToggleExpand}) {
       ))}
 
       <h2>Work Experience</h2>
-      <div id="work-experience" className="accordion">       
+      <Accordion items={profile.jobInfo}/>
+
+      {/* <div id="work-experience" className="accordion">       
         {profile.jobInfo.map((job) => (
           <div key={job.id} className="expandable-session">
             <button key={job.id} onClick={onToggleExpand}>Toggle</button>
@@ -83,19 +37,22 @@ function InputForm({profile, onChange, onToggleExpand}) {
             <input id={`${job.id}-description`} type="text" defaultValue={job.description} onChange={onChange} />
           </div>
         ))}
-      </div>
+      </div> */}
 
       <h2>Education</h2>
-      {profile.educationInfo.map((edu) => (
-        <div key={edu.id}>
-          <label>Institution</label>
-          <input id={`${edu.id}-institution`} type="text" defaultValue={edu.institution} onChange={onChange} />
-          <label>Duration</label>
-          <input id={`${edu.id}-duration`} type="text" defaultValue={edu.duration} onChange={onChange} />
-          <label>Details</label>
-          <input id={`${edu.id}-details`} type="text" defaultValue={edu.details} onChange={onChange} />
-        </div>
-      ))}
+      <div id="education-info" className="accordion">
+        {profile.educationInfo.map((edu) => (
+          <div key={edu.id} className="expandable-session">
+            <button key={edu.id} onClick={onToggleExpand}>Toggle</button>
+            <label>Institution</label>
+            <input id={`${edu.id}-institution`} type="text" defaultValue={edu.institution} onChange={onChange} />
+            <label>Duration</label>
+            <input id={`${edu.id}-duration`} type="text" defaultValue={edu.duration} onChange={onChange} />
+            <label>Details</label>
+            <input id={`${edu.id}-details`} type="text" defaultValue={edu.details} onChange={onChange} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -168,6 +125,7 @@ function PreviewForm({profile}) {
 function App() {
   // const [count, setCount] = useState(0)
   const [updatedProfile, setUpdatedProfile] = useState(profile);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   function handleExpand(e) {
     
@@ -204,7 +162,9 @@ function App() {
 
   return (
     <>
-      <InputForm profile={updatedProfile} onChange={handleInput} onToggleExpand={handleExpand}/>
+      <InputForm profile={updatedProfile} 
+        onChange={handleInput} 
+        onToggleExpand={handleExpand}/>
       <PreviewForm profile={updatedProfile} />
     </>
   );

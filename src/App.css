@@ -20,13 +20,18 @@
   text-align: left;
 }
 
+#input-form div {
+  display: flex;
+  flex-direction: column;
+}
+
 #input-form h1 {
   font-size: 24px;
-
+  
 }
 
 #preview-form {
-  grid-column: span 3;
+  grid-column: span 2;
   background-color: #fff;
   text-align: left;
 }
