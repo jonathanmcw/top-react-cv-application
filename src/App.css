@@ -20,7 +20,7 @@
   text-align: left;
 }
 
-#input-form div {
+#input-form div, .panel {
   display: flex;
   flex-direction: column;
 }

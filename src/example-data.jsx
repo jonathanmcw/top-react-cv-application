@@ -11,13 +11,13 @@ export const jobInfo = [
     id: 'job1',
     employer: 'TechCorp',
     duration: '2 years',
-    description: 'Software Engineer responsible for developing web applications.',
+    details: 'Software Engineer responsible for developing web applications.',
 },
 {
     id: 'job2',
     employer: 'Innovate Inc.',
     duration: '1 year',
-    description: 'Junior Developer working on mobile app development.',
+    details: 'Junior Developer working on mobile app development.',
 }
 ]
 

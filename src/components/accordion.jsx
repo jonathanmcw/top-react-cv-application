@@ -1,21 +1,19 @@
 import { useState } from 'react'
 
-export default function Accordion({items}) {
-    const [activeIndex, setActiveIndex] = useState(0);
+export default function Accordion({items, getTitle, getDescription}) {
+    const [activeIndex, setActiveIndex] = useState(null);
     return (
-        <div id="work-experience" className="accordion">
-            {items.map((item) => {
-                return (
-                    <Panel
-                        key={item.id}
-                        title={item.employer}
-                        isActive={activeIndex == item.id}
-                        onShow={ () => setActiveIndex(item.id) }
-                    >
-                    {item.description} hello there 
-                    </Panel>
-                )
-            })}
+        <div className="accordion">
+            {items.map((item) => (
+                <Panel
+                    key={item.id}
+                    title={getTitle(item)}
+                    isActive={activeIndex === item.id}
+                    onShow={() => setActiveIndex(item.id)}
+                >
+                    {getDescription(item)}
+                </Panel>
+            ))}
         </div>
     )
 }
@@ -27,15 +25,13 @@ function Panel({
     onShow
 }) {
     return (
-        <section className="panel">
+        <div className="panel">
             <h3>{title}</h3>
             { isActive ? (
-                <p>{children}</p>
+                <>{children}</>
             ) : (
-                <button onClick={onShow}>
-                    Show
-                </button>
+                <button onClick={onShow}>Show</button>
             )}
-        </section>
+        </div>
     )
 }
